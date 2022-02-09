@@ -11,6 +11,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'org.owasp.dependencycheck'
+apply plugin: 'maven-publish'
 
 description 'Yandex Market Model'
 group = 'com.github.ladutsko'
@@ -60,4 +61,16 @@ task sourcesJar(type: Jar) {
 
 artifacts {
     archives javadocJar, sourcesJar
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.ladutsko'
+            artifactId = 'yandex-market-model'
+            version = '1.0-SNAPSHOT'
+
+            from components.java
+        }
+    }
 }
